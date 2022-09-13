@@ -14,7 +14,13 @@ export class PokerController {
     return this.pokerService.welcome();
   }
   @Post('judge')
-  judge(@Body('cards') cards: string): string {
-    return this.pokerService.judge(cards);
+  async judge(@Body('cards') cards: string): Hand {
+    const hand: Hand = {
+      cards: cards,
+    };
+    hand.cardList = hand.cards.split(' ');
+    console.log(hand);
+
+    return await this.pokerService.judge(hand);
   }
 }
