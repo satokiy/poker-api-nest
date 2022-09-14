@@ -14,7 +14,7 @@ export class PokerController {
     return this.pokerService.welcome();
   }
   @Post('judge')
-  async judge(@Body('cards') cards: string): Hand {
+  async judge(@Body('cards') cards: string): Promise<Hand> {
     const hand: Hand = {
       cards: cards,
     };

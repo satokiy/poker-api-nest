@@ -1,0 +1,27 @@
+openapi: 3.0.0
+paths:
+  /poker:
+    get:
+      operationId: PokerController_welcome
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /poker/judge:
+    post:
+      operationId: PokerController_judge
+      parameters: []
+      responses:
+        '201':
+          description: ''
+info:
+  title: Poker
+  description: The poker API description
+  version: '1.0'
+  contact: {}
+tags:
+  - name: poker
+    description: ''
+servers: []
+components:
+  schemas: {}
