@@ -1,23 +1,26 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PokerRole } from './poker-best.enum';
 import { Hand } from './poker.model';
-import {
-  isFlash,
-  isStraight,
-  isStraightFlash,
-} from '../../libs/poker/src/poker';
+import { isFlash, isStraight, isStraightFlash } from 'libs/poker/src/poker';
+import { HandCheckService } from 'libs/poker/src/hand-check';
 
 @Injectable()
 export class PokerService {
-  private cards: string;
-  private cardList: string[];
-
   welcome() {
     return 'this is poker service. welcome!';
   }
 
-  async judge(hand: Hand) {
-    return await this.judgeRole(hand);
+  async judge(handInfo: Hand) {
+    console.log(handInfo);
+    const checkService = new HandCheckService(handInfo);
+    const errorMessage = checkService.isInvalidMessage();
+
+    if (errorMessage.length > 0) {
+      throw new BadRequestException(errorMessage);
+    }
+
+    handInfo.cardList = handInfo.hand.split(' ');
+    return await this.judgeRole(handInfo);
   }
 
   async judgeRole(hand: Hand) {

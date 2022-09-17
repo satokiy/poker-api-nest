@@ -59,7 +59,12 @@ components:
   schemas:
     PokerHandDto:
       type: object
-      properties: {}
+      properties:
+        hand:
+          type: string
+          description: 手札
+      required:
+        - hand
     PlayPokerDto:
       type: object
       properties:

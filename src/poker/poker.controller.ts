@@ -11,7 +11,7 @@ import { ApiTags } from '@nestjs/swagger';
   path: 'poker',
 })
 export class PokerController {
-  constructor(private readonly pokerService: PokerService) {};
+  constructor(private readonly pokerService: PokerService) {}
 
   @Get()
   welcome() {
@@ -22,9 +22,6 @@ export class PokerController {
     const handInfo: Hand = {
       ...hand,
     };
-    // TODO: 手札のバリデーションと分割
-    handInfo.cardList = handInfo.hand.split(' ');
-    console.log(handInfo);
 
     return await this.pokerService.judge(handInfo);
   }

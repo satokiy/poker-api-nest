@@ -1,8 +1,11 @@
-import { IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class PokerHandDto {
+  @ApiProperty({
+    description: '手札',
+  })
   @IsString()
   @IsNotEmpty()
-  @MinLength(10)
   hand: string;
 }
