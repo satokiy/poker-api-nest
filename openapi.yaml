@@ -7,6 +7,8 @@ paths:
       responses:
         '200':
           description: ''
+      tags: &ref_0
+        - poker
   /poker/judge:
     post:
       operationId: PokerController_judge
@@ -20,6 +22,7 @@ paths:
       responses:
         '201':
           description: ''
+      tags: *ref_0
   /poker/play:
     post:
       operationId: PokerController_play
@@ -33,6 +36,16 @@ paths:
       responses:
         '201':
           description: ''
+      tags: *ref_0
+  /health-check:
+    get:
+      operationId: HealthCheckController_healthCheck
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - health-check
 info:
   title: Poker
   description: The poker API description
@@ -49,4 +62,11 @@ components:
       properties: {}
     PlayPokerDto:
       type: object
-      properties: {}
+      properties:
+        handList:
+          description: 手札のリスト
+          type: array
+          items:
+            type: string
+      required:
+        - handList

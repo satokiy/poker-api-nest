@@ -3,7 +3,9 @@ import { PokerHandDto } from './dto/poker-hand.dto';
 import { PlayPokerDto } from './dto/play-poker.dto';
 import { Hand } from './poker.model';
 import { PokerService } from './poker.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('poker')
 @Controller({
   version: ['1'],
   path: 'poker',
