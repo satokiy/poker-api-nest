@@ -11,7 +11,7 @@ paths:
         - poker
   /poker/judge:
     post:
-      operationId: PokerController_judge
+      operationId: PokerController_judgeRole
       parameters: []
       requestBody:
         required: true
