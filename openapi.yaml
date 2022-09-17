@@ -11,6 +11,25 @@ paths:
     post:
       operationId: PokerController_judge
       parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PokerHandDto'
+      responses:
+        '201':
+          description: ''
+  /poker/play:
+    post:
+      operationId: PokerController_play
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayPokerDto'
       responses:
         '201':
           description: ''
@@ -24,4 +43,10 @@ tags:
     description: ''
 servers: []
 components:
-  schemas: {}
+  schemas:
+    PokerHandDto:
+      type: object
+      properties: {}
+    PlayPokerDto:
+      type: object
+      properties: {}
