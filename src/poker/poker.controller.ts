@@ -18,22 +18,16 @@ export class PokerController {
     return this.pokerService.welcome();
   }
   @Post('judge')
-  async judge(@Body() hand: PokerHandDto): Promise<Hand> {
+  async judgeRole(@Body() hand: PokerHandDto): Promise<Hand> {
     const handInfo: Hand = {
       ...hand,
     };
 
-    return await this.pokerService.judge(handInfo);
+    return await this.pokerService.judgeRole(handInfo);
   }
 
   @Post('play')
   async play(@Body() playPokerDto: PlayPokerDto) {
-    for (const hand of playPokerDto.handList) {
-      const handInfo: Hand = {
-        hand,
-      };
-      console.log(handInfo);
-    }
-    return 'Wow';
+    return await this.pokerService.play(playPokerDto);
   }
 }
