@@ -26,6 +26,7 @@ export class PokerService {
     handInfo.cardList = handInfo.hand.split(' ');
     return await this.judgeRoleService.judgeRole(handInfo);
   }
+  
   async play(playPokerDto: PlayPokerDto) {
     console.log(playPokerDto);
     return 'wow';
