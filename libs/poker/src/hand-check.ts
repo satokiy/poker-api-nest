@@ -4,43 +4,40 @@ import { Hand } from 'src/poker/poker.model';
 
 @Injectable()
 export class HandCheckService {
-  private cardList: string[];
-  constructor(hand: Hand) {
-    this.cardList = hand.hand.split(' ');
-  }
-
-  isInvalidMessage(): string[] {
+  isInvalidMessage(handInfo: Hand): string[] {
     const message = [];
-    if (this.invalidLength()) {
+    const cardList: string[] = handInfo.hand.split(' ');
+
+    if (this.invalidLength(cardList)) {
       message.push(ErrorMessage.DEFAULT_ERROR);
       return message;
     }
-    if (this.dupCard()) {
+    if (this.dupCard(cardList)) {
       message.push(ErrorMessage.DUP_ERROR);
       return message;
     }
-    if (this.invalidCard()) {
+    if (this.invalidCard(cardList)) {
       message.push(ErrorMessage.CARD_ERROR);
       return message;
     }
     return message;
   }
 
-  invalidLength() {
-    if (this.cardList.length !== 5) {
+  invalidLength(cardList: string[]) {
+    if (cardList.length !== 5) {
       return true;
     }
   }
 
-  dupCard() {
-    const set = new Set(this.cardList);
-    if (this.cardList.length !== set.size) {
+  dupCard(cardList: string[]) {
+    const set = new Set(cardList);
+    if (cardList.length !== set.size) {
       return true;
     }
   }
 
-  invalidCard() {
+  invalidCard(cardList: string[] ) {
     const regex = new RegExp(/^([SHDC])([1-9]|1[0-3])$/);
-    return this.cardList.some((card) => !regex.test(card));
+    return cardList.some((card) => !regex.test(card));
   }
 }
