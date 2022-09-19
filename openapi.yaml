@@ -18,7 +18,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PokerHandDto'
+              $ref: '#/components/schemas/PlayPokerDto'
       responses:
         '201':
           description: ''
@@ -26,7 +26,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PokerJudgeResponse'
-        '400':
+        '404':
           description: ''
       tags: *ref_0
   /poker/play:
@@ -42,6 +42,12 @@ paths:
       responses:
         '201':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PokerJudgeResponse'
+        '400':
+          description: bad request.
       tags: *ref_0
   /health-check:
     get:
@@ -63,15 +69,20 @@ tags:
 servers: []
 components:
   schemas:
-    PokerHandDto:
+    PlayPokerDto:
       type: object
       properties:
-        hand:
-          type: string
-          description: 手札
-          example: H1 H2 H3 H4 H5
+        handList:
+          description: 手札のリスト
+          example:
+            - H1 H2 H3 H4 H5
+            - D1 D2 D3 D4 D5
+            - D1 D2 D3 D4 D5
+          type: array
+          items:
+            type: string
       required:
-        - hand
+        - handList
     PokerJudgeResponse:
       type: object
       properties:
@@ -92,19 +103,19 @@ components:
             type: string
         role:
           type: string
+          enum:
+            - STRAIGHT_FLASH
+            - FLASH
+            - STRAIGHT
+            - ONE_PAIR
+            - TWO_PAIR
+            - THREE_CARD
+            - FOUR_CARD
+            - FULL_HOUSE
+            - NO_ROLE
           description: 役
           example: STRAIGHT_FLASH
       required:
         - hand
         - cardList
         - role
-    PlayPokerDto:
-      type: object
-      properties:
-        handList:
-          description: 手札のリスト
-          type: array
-          items:
-            type: string
-      required:
-        - handList
