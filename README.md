@@ -8,10 +8,23 @@
 
 
 ## Description
-ポーカーの役判定をAPIです
+ポーカーの役判定を行うAPIです
 
+## APIドキュメント
+https://satokiy.github.io/poker-api-nest
 
-## 使い方
+developブランチにマージするとGithubActionsによりGithub Pagesとして公開されます。
+NestjsのデコレーターからOpenAPI -> ReDocを生成します。
+更新する際には下記コマンドを実行してください。
+```
+yarn run start
+```
+このコマンドによりopenapi定義書が更新されます。
+```
+yarn run redoc-build
+```
+このコマンドにより、redocが更新されます。
+## APIの使い方
 
 ### ヘルスチェック
 ```
@@ -26,3 +39,6 @@ curl -X POST -H "Content-Type: application/json" -d '{"hand":"H1 H2 H3 H4 H5"}' 
 - Nodeのバージョンは16
 - package managerはyarn
 - VScodeのdevcontainerを利用します。
+
+
+
