@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class PokerHandDto {
+export class PokerJudgeRequestDto {
   @ApiProperty({
     type: String,
     description: '手札',

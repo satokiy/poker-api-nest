@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class PlayPokerDto {
+export class PlayPokerRequestDto {
   @ApiProperty({
     type: [String],
     description: '手札のリスト',
