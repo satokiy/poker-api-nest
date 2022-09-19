@@ -16,12 +16,10 @@
 ### ヘルスチェック
 ```
 curl https://xxxxxxxx.yyy:4000/health-check
-
 ```
 ### 役判定
 ```
 curl -X POST -H "Content-Type: application/json" -d '{"hand":"H1 H2 H3 H4 H5"}' https://xxxxxxxx.yyy:4000/v1/poker/judge
-
 ```
 
 ## 開発環境
