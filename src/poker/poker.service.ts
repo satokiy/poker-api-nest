@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
 import { Hand } from './poker.model';
 import { HandCheckService } from 'libs/poker/src/hand-check';
 import { JudgePokerRoleService } from 'libs/poker/src/poker';
@@ -12,7 +12,10 @@ export class PokerService {
   ) {}
 
   welcome() {
-    return 'this is poker service. welcome!';
+    return {
+      statusCode: HttpStatus.OK,
+      body: 'Hello! This is Poker App!',
+    };
   }
 
   async judgeRole(handInfo: Hand) {
