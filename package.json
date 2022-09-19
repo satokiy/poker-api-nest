@@ -28,6 +28,7 @@
     "@nestjs/swagger": "^6.1.2",
     "@types/aws-lambda": "^8.10.104",
     "aws-serverless-express": "^3.4.0",
+    "redoc-cli": "^0.13.20",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",

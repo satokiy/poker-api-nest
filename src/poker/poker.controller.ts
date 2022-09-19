@@ -3,7 +3,7 @@ import { PokerHandDto, PokerJudgeResponse } from './dto/poker-hand.dto';
 import { PlayPokerDto } from './dto/play-poker.dto';
 import { Hand } from './poker.model';
 import { PokerService } from './poker.service';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiBody, ApiNotFoundResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('poker')
 @Controller({
@@ -20,7 +20,8 @@ export class PokerController {
   }
   @Post('judge')
   @ApiResponse({ status: HttpStatus.CREATED, type: PokerJudgeResponse })
-  @ApiResponse({ status: HttpStatus.BAD_REQUEST })
+  @ApiNotFoundResponse()
+  @ApiBody({ type: PlayPokerDto })
   async judgeRole(@Body() hand: PokerHandDto): Promise<Hand> {
     const handInfo: Hand = {
       ...hand,
@@ -30,6 +31,9 @@ export class PokerController {
   }
 
   @Post('play')
+  @ApiResponse({ status: HttpStatus.CREATED, type: PokerJudgeResponse })
+  @ApiBadRequestResponse({ description: 'bad request.' })
+  @ApiBody({ type: PlayPokerDto })
   async play(@Body() playPokerDto: PlayPokerDto) {
     return await this.pokerService.play(playPokerDto);
   }
