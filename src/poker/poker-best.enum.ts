@@ -12,4 +12,5 @@ export enum PokerRole {
   THREE_CARD = 'THREE_CARD',
   FOUR_CARD = 'FOUR_CARD',
   FULL_HOUSE = 'FULL_HOUSE',
+  NO_ROLE = 'NO_ROLE',
 }

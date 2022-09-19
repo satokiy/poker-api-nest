@@ -7,13 +7,51 @@ paths:
       responses:
         '200':
           description: ''
+      tags: &ref_0
+        - poker
   /poker/judge:
     post:
-      operationId: PokerController_judge
+      operationId: PokerController_judgeRole
       parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PokerHandDto'
       responses:
         '201':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PokerJudgeResponse'
+        '400':
+          description: ''
+      tags: *ref_0
+  /poker/play:
+    post:
+      operationId: PokerController_play
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayPokerDto'
+      responses:
+        '201':
+          description: ''
+      tags: *ref_0
+  /health-check:
+    get:
+      operationId: HealthCheckController_healthCheck
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - health-check
 info:
   title: Poker
   description: The poker API description
@@ -24,4 +62,49 @@ tags:
     description: ''
 servers: []
 components:
-  schemas: {}
+  schemas:
+    PokerHandDto:
+      type: object
+      properties:
+        hand:
+          type: string
+          description: 手札
+          example: H1 H2 H3 H4 H5
+      required:
+        - hand
+    PokerJudgeResponse:
+      type: object
+      properties:
+        hand:
+          type: string
+          description: 手札
+          example: H1 H2 H3 H4 H5
+        cardList:
+          description: カードリスト
+          example:
+            - H1
+            - H2
+            - H3
+            - H4
+            - H5
+          type: array
+          items:
+            type: string
+        role:
+          type: string
+          description: 役
+          example: STRAIGHT_FLASH
+      required:
+        - hand
+        - cardList
+        - role
+    PlayPokerDto:
+      type: object
+      properties:
+        handList:
+          description: 手札のリスト
+          type: array
+          items:
+            type: string
+      required:
+        - handList

@@ -1,43 +1,34 @@
-import { Injectable } from '@nestjs/common';
-import { PokerRole } from './poker-best.enum';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Hand } from './poker.model';
+import { HandCheckService } from 'libs/poker/src/hand-check';
+import { JudgePokerRoleService } from 'libs/poker/src/poker';
+import { PlayPokerDto } from './dto/play-poker.dto';
 
 @Injectable()
 export class PokerService {
-  private cards: string;
-  private cardList: string[];
+  constructor(
+    private readonly handCheckService: HandCheckService,
+    private readonly judgeRoleService: JudgePokerRoleService,
+  ) {}
 
   welcome() {
     return 'this is poker service. welcome!';
   }
 
-  async judge(hand: Hand) {
-    return await this.judgeRole(hand);
-  }
+  async judgeRole(handInfo: Hand) {
+    console.log(handInfo);
+    const errorMessage = this.handCheckService.isInvalidMessage(handInfo);
 
-  async isFlash(cardList: string[]) {
-    const suitList = cardList.map((card) => {
-      return card.charAt(0);
-    });
-    const suitUniqList = [...new Set(suitList)];
-    return suitUniqList.length === 1;
-  }
-
-  async isStraight(cardList: string[]) {
-    // カードリストにおける、数値の最大と最小の差分が4であることを判定
-    const numOnHand: number[] = cardList.map((card) => Number(card.slice(1)));
-    numOnHand.sort((n, m) => n - m);
-    return numOnHand[4] - numOnHand[0] === 4;
-  }
-
-  async isStraightFlash(cardList: string[]) {
-    this.isFlash(cardList) && this.isStraight(cardList);
-  }
-
-  async judgeRole(hand: Hand) {
-    if (await this.isFlash(hand.cardList)) {
-      hand.role = PokerRole.FLASH;
+    if (errorMessage.length > 0) {
+      throw new BadRequestException(errorMessage);
     }
-    return hand;
+
+    handInfo.cardList = handInfo.hand.split(' ');
+    return await this.judgeRoleService.judgeRole(handInfo);
+  }
+  
+  async play(playPokerDto: PlayPokerDto) {
+    console.log(playPokerDto);
+    return 'wow';
   }
 }
