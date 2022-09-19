@@ -13,17 +13,18 @@
 ## APIドキュメント
 https://satokiy.github.io/poker-api-nest
 
-developブランチにマージするとGithubActionsによりGithub Pagesとして公開されます。
-NestjsのデコレーターからOpenAPI -> ReDocを生成します。
-更新する際には下記コマンドを実行してください。
+developブランチにマージするとGithub ActionsによりGithub Pagesとして公開されます。  
+Nestjsのデコレーターをもとに、OpenAPI -> ReDocを生成します。  
+更新する際には下記コマンドを実行してください。  
 ```
 yarn run start
 ```
-このコマンドによりopenapi定義書が更新されます。
+このコマンドにより、OpenAPIの定義書が更新されます。
 ```
 yarn run redoc-build
 ```
 このコマンドにより、redocが更新されます。
+
 ## APIの使い方
 
 ### ヘルスチェック
