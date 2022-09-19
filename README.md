@@ -41,15 +41,6 @@ sls deploy
 ## APIの使い方
 ### ヘルスチェック
 ```
-curl https://xxxxxxxx.yyy/health-check
-```
-### 役判定
-```
-curl -X POST -H "Content-Type: application/json" -d '{"hand":"H1 H2 H3 H4 H5"}' https://xxxxxxxx.yyy/v1/poker/judge
-```
-
-### ヘルスチェック
-```
 curl https://xxxxxxxx.yyy:4000/health-check
 ```
 ### 役判定
