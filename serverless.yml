@@ -6,7 +6,7 @@ plugins:
 custom:
   defaultStage: dev
   profiles:
-    dev: kojin-satoki
+    dev: default
     prod: prod
   serverless-layers:
     layersDeploymentBucket: poker-api-nestjs-bucket
@@ -16,7 +16,7 @@ provider:
   runtime: nodejs16.x
   region: ap-northeast-1
   # stage: ${opt.stage, 'dev'}
-  profile: kojin-satoki
+  profile: default
   # environment:
   #   SERVERLESS_STAGE: ${self:provider.stage}
 
@@ -34,6 +34,9 @@ functions:
       - http:
           path: "/"
           method: any
+      - http:
+          path: "/health-check"
+          method: GET
       - http:
           path: "{proxy+}"
           method: any
