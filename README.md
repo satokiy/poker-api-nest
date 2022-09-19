@@ -40,7 +40,7 @@ yarn run redoc-build
   - prettier
 - デプロイ
   - Serverless Frameworkを利用します
-  - Lambda layerを使います。S3のバケット名はpoker-api-nestjs-bucketです
+  - Lambda layerを使います。S3のバケット名はserverless.ymlを参照してください
 - test
   - 未整備です...
 ### 開発関連コマンド
