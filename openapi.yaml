@@ -18,7 +18,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PlayPokerDto'
+              $ref: '#/components/schemas/PokerJudgeRequestDto'
       responses:
         '201':
           description: ''
@@ -38,7 +38,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PlayPokerDto'
+              $ref: '#/components/schemas/PlayPokerRequestDto'
       responses:
         '201':
           description: ''
@@ -55,6 +55,8 @@ paths:
       parameters: []
       responses:
         '200':
+          description: health-check is OK
+        '500':
           description: ''
       tags:
         - health-check
@@ -69,20 +71,15 @@ tags:
 servers: []
 components:
   schemas:
-    PlayPokerDto:
+    PokerJudgeRequestDto:
       type: object
       properties:
-        handList:
-          description: 手札のリスト
-          example:
-            - H1 H2 H3 H4 H5
-            - D1 D2 D3 D4 D5
-            - D1 D2 D3 D4 D5
-          type: array
-          items:
-            type: string
+        hand:
+          type: string
+          description: 手札
+          example: H1 H2 H3 H4 H5
       required:
-        - handList
+        - hand
     PokerJudgeResponse:
       type: object
       properties:
@@ -119,3 +116,17 @@ components:
         - hand
         - cardList
         - role
+    PlayPokerRequestDto:
+      type: object
+      properties:
+        handList:
+          description: 手札のリスト
+          example:
+            - H1 H2 H3 H4 H5
+            - D1 D2 D3 D4 D5
+            - D1 D2 D3 D4 D5
+          type: array
+          items:
+            type: string
+      required:
+        - handList

@@ -1,9 +1,18 @@
 import { Body, Controller, Get, HttpStatus, Post } from '@nestjs/common';
-import { PokerHandDto, PokerJudgeResponse } from './dto/poker-hand.dto';
-import { PlayPokerDto } from './dto/play-poker.dto';
+import {
+  PokerJudgeRequestDto,
+  PokerJudgeResponse,
+} from './dto/poker-judge.dto';
+import { PlayPokerRequestDto } from './dto/poker-play.dto';
 import { Hand } from './poker.model';
 import { PokerService } from './poker.service';
-import { ApiBadRequestResponse, ApiBody, ApiNotFoundResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiTags('poker')
 @Controller({
@@ -21,8 +30,8 @@ export class PokerController {
   @Post('judge')
   @ApiResponse({ status: HttpStatus.CREATED, type: PokerJudgeResponse })
   @ApiNotFoundResponse()
-  @ApiBody({ type: PlayPokerDto })
-  async judgeRole(@Body() hand: PokerHandDto): Promise<Hand> {
+  @ApiBody({ type: PokerJudgeRequestDto })
+  async judgeRole(@Body() hand: PokerJudgeRequestDto): Promise<Hand> {
     const handInfo: Hand = {
       ...hand,
     };
@@ -33,8 +42,8 @@ export class PokerController {
   @Post('play')
   @ApiResponse({ status: HttpStatus.CREATED, type: PokerJudgeResponse })
   @ApiBadRequestResponse({ description: 'bad request.' })
-  @ApiBody({ type: PlayPokerDto })
-  async play(@Body() playPokerDto: PlayPokerDto) {
+  @ApiBody({ type: PlayPokerRequestDto })
+  async play(@Body() playPokerDto: PlayPokerRequestDto) {
     return await this.pokerService.play(playPokerDto);
   }
 }

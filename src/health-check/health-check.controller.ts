@@ -1,11 +1,16 @@
 import { Controller, Get, HttpStatus } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiInternalServerErrorResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiTags('health-check')
 @Controller('health-check')
 export class HealthCheckController {
   @Get()
-  @ApiResponse({ status: HttpStatus.OK })
+  @ApiOkResponse({ description: 'health-check is OK'})
+  @ApiInternalServerErrorResponse()
   healthCheck() {
     return {
       statusCode: HttpStatus.OK,
