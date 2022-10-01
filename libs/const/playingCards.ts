@@ -2,7 +2,8 @@ export type DeckType = {
   rank: number;
   label: string;
   suit: string;
-}
+  value: string;
+};
 
 export const Suit = {
   SPADE: '♠',
@@ -10,7 +11,6 @@ export const Suit = {
   DIAMOND: '♦',
   HEART: '♥',
 };
-
 
 export const suitList = [Suit.SPADE, Suit.CLUB, Suit.DIAMOND, Suit.HEART];
 
@@ -32,7 +32,16 @@ export const cardList = [
 
 // 各スートごとに2からAまで作成する
 export const deckBase: DeckType[] = suitList
-  .map((suit) => cardList.map((card) => ({ suit, ...card })))
+  .map((suit) => {
+    return cardList.map((card) => {
+      const value = suit + card.label;
+      return {
+        value,
+        suit,
+        ...card,
+      };
+    });
+  })
   .flat();
 
 // ジョーカー(初期は使わない)
