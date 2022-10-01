@@ -13,6 +13,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { DrawCardRequestDto } from './dto/draw.dto';
 
 @ApiTags('poker')
 @Controller({
@@ -27,6 +28,13 @@ export class PokerController {
   welcome() {
     return this.pokerService.welcome();
   }
+
+  @Get('draw')
+  @ApiResponse({ status: HttpStatus.OK, type: DrawCardRequestDto })
+  draw() {
+    return this.pokerService.draw();
+  }
+
   @Post('judge')
   @ApiResponse({ status: HttpStatus.CREATED, type: PokerJudgeResponse })
   @ApiNotFoundResponse()
