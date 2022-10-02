@@ -9,6 +9,18 @@ paths:
           description: ''
       tags: &ref_0
         - poker
+  /poker/draw:
+    get:
+      operationId: PokerController_draw
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrawCardRequestDto'
+      tags: *ref_0
   /poker/judge:
     post:
       operationId: PokerController_judgeRole
@@ -71,6 +83,22 @@ tags:
 servers: []
 components:
   schemas:
+    DrawCardRequestDto:
+      type: object
+      properties:
+        hand:
+          description: 手札
+          example:
+            - H1
+            - D2
+            - D3
+            - S4
+            - C5
+          type: array
+          items:
+            type: string
+      required:
+        - hand
     PokerJudgeRequestDto:
       type: object
       properties:
