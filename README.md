@@ -31,7 +31,7 @@ yarn run redoc-build
   - (推奨)VScodeのdev containerを利用します
   - ローカルでDockerを起動して開発することも可能です
     - ホストのポートが4000番であることに注意してください
-  - Dockerを使わないでの開発も可能です。yarn run startしてください
+  - Dockerを使わないでの開発も可能です。yarn startしてください
 - Nodeのバージョン
   - 16.x
 - package manager
@@ -46,11 +46,11 @@ yarn run redoc-build
 ### 開発関連コマンド
 ```
 # build
-yarn run build
+yarn build
 ```
 ```
 # boot server
-yarn run start
+yarn start
 ```
 
 ```
