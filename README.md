@@ -20,11 +20,11 @@ Nestjsのデコレーターをもとに、OpenAPI -> ReDocを生成します。
 ### API仕様書関連コマンド
 ```
 # OpenAPI仕様書の更新（現状、サーバーの起動をトリガーにしています）
-yarn run start
+yarn start
 ```
 ```
 # OpenAPI仕様書をもとにRedocを更新
-yarn run redoc-build
+yarn redoc-build
 ```
 ## 開発
 - 環境
