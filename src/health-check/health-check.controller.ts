@@ -7,7 +7,6 @@ import {
 
 @ApiTags('health-check')
 @Controller({
-  version: ['1'],
   path: 'health-check',
 })
 export class HealthCheckController {
