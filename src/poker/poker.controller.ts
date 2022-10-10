@@ -10,6 +10,7 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiNotFoundResponse,
+  ApiOperation,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -17,25 +18,27 @@ import { DrawCardRequestDto } from './dto/draw.dto';
 
 @ApiTags('poker')
 @Controller({
-  version: ['1'],
   path: 'poker',
 })
 export class PokerController {
   constructor(private readonly pokerService: PokerService) {}
 
   @Get()
+  @ApiOperation({ summary: 'welcome response.' })
   @ApiResponse({ status: HttpStatus.OK })
   welcome() {
     return this.pokerService.welcome();
   }
 
   @Get('draw')
+  @ApiOperation({ summary: 'Get a random 5 cards for poker' })
   @ApiResponse({ status: HttpStatus.OK, type: DrawCardRequestDto })
   draw() {
     return this.pokerService.draw();
   }
 
   @Post('judge')
+  @ApiOperation({ summary: 'Post cards and return result of poker role.' })
   @ApiResponse({ status: HttpStatus.CREATED, type: PokerJudgeResponse })
   @ApiNotFoundResponse()
   @ApiBody({ type: PokerJudgeRequestDto })
@@ -48,6 +51,9 @@ export class PokerController {
   }
 
   @Post('play')
+  @ApiOperation({
+    summary: 'Post multiple hand and return winner(coming soon!).',
+  })
   @ApiResponse({ status: HttpStatus.CREATED, type: PokerJudgeResponse })
   @ApiBadRequestResponse({ description: 'bad request.' })
   @ApiBody({ type: PlayPokerRequestDto })
