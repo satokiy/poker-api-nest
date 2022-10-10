@@ -9,6 +9,18 @@ paths:
           description: ''
       tags: &ref_0
         - poker
+  /poker/draw:
+    get:
+      operationId: PokerController_draw
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrawCardRequestDto'
+      tags: *ref_0
   /poker/judge:
     post:
       operationId: PokerController_judgeRole
@@ -18,7 +30,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PokerHandDto'
+              $ref: '#/components/schemas/PokerJudgeRequestDto'
       responses:
         '201':
           description: ''
@@ -26,7 +38,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PokerJudgeResponse'
-        '400':
+        '404':
           description: ''
       tags: *ref_0
   /poker/play:
@@ -38,10 +50,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PlayPokerDto'
+              $ref: '#/components/schemas/PlayPokerRequestDto'
       responses:
         '201':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PokerJudgeResponse'
+        '400':
+          description: bad request.
       tags: *ref_0
   /health-check:
     get:
@@ -49,6 +67,8 @@ paths:
       parameters: []
       responses:
         '200':
+          description: health-check is OK
+        '500':
           description: ''
       tags:
         - health-check
@@ -63,7 +83,23 @@ tags:
 servers: []
 components:
   schemas:
-    PokerHandDto:
+    DrawCardRequestDto:
+      type: object
+      properties:
+        hand:
+          description: 手札
+          example:
+            - H1
+            - D2
+            - D3
+            - S4
+            - C5
+          type: array
+          items:
+            type: string
+      required:
+        - hand
+    PokerJudgeRequestDto:
       type: object
       properties:
         hand:
@@ -92,17 +128,31 @@ components:
             type: string
         role:
           type: string
+          enum:
+            - STRAIGHT_FLASH
+            - FLASH
+            - STRAIGHT
+            - ONE_PAIR
+            - TWO_PAIR
+            - THREE_CARD
+            - FOUR_CARD
+            - FULL_HOUSE
+            - NO_ROLE
           description: 役
           example: STRAIGHT_FLASH
       required:
         - hand
         - cardList
         - role
-    PlayPokerDto:
+    PlayPokerRequestDto:
       type: object
       properties:
         handList:
           description: 手札のリスト
+          example:
+            - H1 H2 H3 H4 H5
+            - D1 D2 D3 D4 D5
+            - D1 D2 D3 D4 D5
           type: array
           items:
             type: string

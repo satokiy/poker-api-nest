@@ -2,19 +2,28 @@ import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
 import { Hand } from './poker.model';
 import { HandCheckService } from 'libs/poker/src/hand-check';
 import { JudgePokerRoleService } from 'libs/poker/src/poker';
-import { PlayPokerDto } from './dto/play-poker.dto';
+import { PlayPokerRequestDto } from './dto/poker-play.dto';
+import { Deck } from 'libs/poker/src/deck';
 
 @Injectable()
 export class PokerService {
   constructor(
     private readonly handCheckService: HandCheckService,
     private readonly judgeRoleService: JudgePokerRoleService,
+    private readonly deck: Deck,
   ) {}
 
   welcome() {
     return {
       statusCode: HttpStatus.OK,
       body: 'Hello! This is Poker App!',
+    };
+  }
+
+  draw() {
+    const hand = this.deck.deal(5);
+    return {
+      hand: hand,
     };
   }
 
@@ -29,9 +38,9 @@ export class PokerService {
     handInfo.cardList = handInfo.hand.split(' ');
     return await this.judgeRoleService.judgeRole(handInfo);
   }
-  
-  async play(playPokerDto: PlayPokerDto) {
-    console.log(playPokerDto);
+
+  async play(playPokerRequestDto: PlayPokerRequestDto) {
+    console.log(playPokerRequestDto);
     return 'wow';
   }
 }

@@ -24,8 +24,8 @@
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
-    "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.1.2",
+    "@nestjs/platform-express": "^9.0.0",
     "@types/aws-lambda": "^8.10.104",
     "aws-serverless-express": "^3.4.0",
     "reflect-metadata": "^0.1.13",
@@ -34,6 +34,7 @@
     "serverless": "^3.22.0"
   },
   "devDependencies": {
+    "redoc-cli": "^0.13.20",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
