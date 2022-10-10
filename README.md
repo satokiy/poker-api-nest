@@ -16,15 +16,16 @@ https://satokiy.github.io/poker-api-nest
 
 Github ActionsによりGithub Pagesとして公開されます。  
 Nestjsのデコレーターをもとに、OpenAPI -> ReDocを生成します。  
+https://github.com/satokiy/poker-app-vue　では、本リポジトリで作成したopenapi.yamlをもとにAPIクライアントを生成します。  
 
 ### API仕様書関連コマンド
 ```
 # OpenAPI仕様書の更新（現状、サーバーの起動をトリガーにしています）
-yarn run start
+yarn start
 ```
 ```
 # OpenAPI仕様書をもとにRedocを更新
-yarn run redoc-build
+yarn redoc-build
 ```
 ## 開発
 - 環境
@@ -46,11 +47,11 @@ yarn run redoc-build
 ### 開発関連コマンド
 ```
 # build
-yarn run build
+yarn build
 ```
 ```
 # boot server
-yarn run start
+yarn start
 ```
 
 ```
@@ -63,7 +64,11 @@ sls deploy
 ```
 curl https://xxxxxxxx.yyy/health-check
 ```
+## 手札を引く
+```
+curl https://xxxxxxxx.yyy/poker/draw
+```
 ### 役判定
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"hand":"H1 H2 H3 H4 H5"}' https://xxxxxxxx.yyy/v1/poker/judge
+curl -X POST -H "Content-Type: application/json" -d '{"hand":"H1 H2 H3 H4 H5"}' https://xxxxxxxx.yyy/poker/judge
 ```
