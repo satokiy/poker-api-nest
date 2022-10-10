@@ -6,10 +6,12 @@ import {
 } from '@nestjs/swagger';
 
 @ApiTags('health-check')
-@Controller('health-check')
+@Controller({
+  path: 'health-check',
+})
 export class HealthCheckController {
   @Get()
-  @ApiOkResponse({ description: 'health-check is OK'})
+  @ApiOkResponse({ description: 'health-check is OK' })
   @ApiInternalServerErrorResponse()
   healthCheck() {
     return {

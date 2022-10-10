@@ -11,8 +11,15 @@ export class Deck {
     this._deck.sort((a, b) => Math.random() - 0.5);
   }
 
-  // 山札からカードを取り出すメソッド
+  // 山札からカードを取り出す
   deal = (num: number) => {
+    // 5枚未満になったらリセット
+    if (this._deck.length < 5) {
+      console.log('reset deck!');
+      this._deck = [...deckBase];
+      this._deck.sort((a, b) => Math.random() - 0.5);
+    }
     return this._deck.splice(0, num);
   };
+
 }

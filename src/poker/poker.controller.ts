@@ -17,7 +17,6 @@ import { DrawCardRequestDto } from './dto/draw.dto';
 
 @ApiTags('poker')
 @Controller({
-  version: ['1'],
   path: 'poker',
 })
 export class PokerController {
