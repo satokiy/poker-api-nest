@@ -64,7 +64,7 @@ sls deploy
 ```
 curl https://xxxxxxxx.yyy/health-check
 ```
-## 手札を引く
+### 手札を引く
 ```
 curl https://xxxxxxxx.yyy/poker/draw
 ```
