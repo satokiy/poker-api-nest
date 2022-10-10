@@ -5,7 +5,7 @@ export class PokerJudgeRequestDto {
   @ApiProperty({
     type: String,
     description: '手札',
-    example: 'H1 H2 H3 H4 H5',
+    example: '♠1 ♠2 ♠3 ♠4 ♠5',
     required: true,
   })
   @IsString()
@@ -17,14 +17,14 @@ export class PokerJudgeResponse {
   @ApiProperty({
     type: String,
     description: '手札',
-    example: 'H1 H2 H3 H4 H5',
+    example: '♠1 ♠2 ♠3 ♠4 ♠5',
   })
   hand: string;
 
   @ApiProperty({
     type: [String],
     description: 'カードリスト',
-    example: ['H1', 'H2', 'H3', 'H4', 'H5'],
+    example: ['♠1', '♠2', '♠3', '♠4', '♠5'],
   })
   cardList: string[];
 

@@ -10,7 +10,6 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiNotFoundResponse,
-  ApiOperation,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';

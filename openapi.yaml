@@ -89,14 +89,29 @@ components:
         hand:
           description: 手札
           example:
-            - H1
-            - D2
-            - D3
-            - S4
-            - C5
+            - value: ♣3
+              suit: ♣
+              rank: 3
+              label: '3'
+            - value: ♣7
+              suit: ♣
+              rank: 7
+              label: '7'
+            - value: ♣8
+              suit: ♣
+              rank: 8
+              label: '8'
+            - value: ♠K
+              suit: ♠
+              rank: 13
+              label: K
+            - value: ♥6
+              suit: ♥
+              rank: 6
+              label: '6'
           type: array
           items:
-            type: string
+            type: object
       required:
         - hand
     PokerJudgeRequestDto:
@@ -105,7 +120,7 @@ components:
         hand:
           type: string
           description: 手札
-          example: H1 H2 H3 H4 H5
+          example: ♠1 ♠2 ♠3 ♠4 ♠5
       required:
         - hand
     PokerJudgeResponse:
@@ -114,15 +129,15 @@ components:
         hand:
           type: string
           description: 手札
-          example: H1 H2 H3 H4 H5
+          example: ♠1 ♠2 ♠3 ♠4 ♠5
         cardList:
           description: カードリスト
           example:
-            - H1
-            - H2
-            - H3
-            - H4
-            - H5
+            - ♠1
+            - ♠2
+            - ♠3
+            - ♠4
+            - ♠5
           type: array
           items:
             type: string
@@ -150,9 +165,9 @@ components:
         handList:
           description: 手札のリスト
           example:
-            - H1 H2 H3 H4 H5
-            - D1 D2 D3 D4 D5
-            - D1 D2 D3 D4 D5
+            - ♠1 ♠2 ♠3 ♠4 ♠5
+            - ♥1 ♥2 ♥3 ♥4 ♥5
+            - ♣1 ♣2 ♣3 ♣4 ♣5
           type: array
           items:
             type: string
