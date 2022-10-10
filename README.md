@@ -16,7 +16,7 @@ https://satokiy.github.io/poker-api-nest
 
 Github ActionsによりGithub Pagesとして公開されます。  
 Nestjsのデコレーターをもとに、OpenAPI -> ReDocを生成します。  
-https://github.com/satokiy/poker-app-vue　では、本リポジトリで作成したopenapi.yamlをもとにAPIクライアントを生成します。  
+[フロントエンドのリポジトリ](https://github.com/satokiy/poker-app-vue)　では、本リポジトリで作成したopenapi.yamlをもとにAPIクライアントを生成します。  
 
 ### API仕様書関連コマンド
 ```
