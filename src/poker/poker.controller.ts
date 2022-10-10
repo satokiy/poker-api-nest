@@ -48,9 +48,6 @@ export class PokerController {
   }
 
   @Post('play')
-  @ApiOperation({
-    summary: 'Post multiple hand and return winner(coming soon!).',
-  })
   @ApiResponse({ status: HttpStatus.CREATED, type: PokerJudgeResponse })
   @ApiBadRequestResponse({ description: 'bad request.' })
   @ApiBody({ type: PlayPokerRequestDto })

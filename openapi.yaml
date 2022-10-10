@@ -44,7 +44,6 @@ paths:
   /poker/play:
     post:
       operationId: PokerController_play
-      summary: Post multiple hand and return winner(coming soon!).
       parameters: []
       requestBody:
         required: true
