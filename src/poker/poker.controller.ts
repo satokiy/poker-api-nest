@@ -24,21 +24,18 @@ export class PokerController {
   constructor(private readonly pokerService: PokerService) {}
 
   @Get()
-  @ApiOperation({ description: 'welcome response.' })
   @ApiResponse({ status: HttpStatus.OK })
   welcome() {
     return this.pokerService.welcome();
   }
 
   @Get('draw')
-  @ApiOperation({ description: 'Get a random 5 cards for poker' })
   @ApiResponse({ status: HttpStatus.OK, type: DrawCardRequestDto })
   draw() {
     return this.pokerService.draw();
   }
 
   @Post('judge')
-  @ApiOperation({ description: 'Post cards and return result of poker role.' })
   @ApiResponse({ status: HttpStatus.CREATED, type: PokerJudgeResponse })
   @ApiNotFoundResponse()
   @ApiBody({ type: PokerJudgeRequestDto })

@@ -3,8 +3,6 @@ paths:
   /poker:
     get:
       operationId: PokerController_welcome
-      summary: ''
-      description: welcome response.
       parameters: []
       responses:
         '200':
@@ -14,8 +12,6 @@ paths:
   /poker/draw:
     get:
       operationId: PokerController_draw
-      summary: ''
-      description: Get a random 5 cards for poker
       parameters: []
       responses:
         '200':
@@ -28,8 +24,6 @@ paths:
   /poker/judge:
     post:
       operationId: PokerController_judgeRole
-      summary: ''
-      description: Post cards and return result of poker role.
       parameters: []
       requestBody:
         required: true
