@@ -1,6 +1,7 @@
 // Pokerの役判定サービスクラス
 import { Injectable } from '@nestjs/common';
-import { numCount, suitCount } from 'libs/poker/src/playingCardUtil'
+import { suitList } from 'libs/const/playingCards';
+import { numCount, suitCount } from 'libs/poker/src/playingCardUtil';
 import { PokerRole } from 'src/poker/poker-best.enum';
 import { Hand } from 'src/poker/poker.model';
 
@@ -71,36 +72,38 @@ export class JudgePokerRoleService {
 
   isFullHouse = async (hand) => {
     const numOnHand = numCount(hand);
-    return Object.values(numOnHand).some((v) => v == 3) &&
-      Object.values(numOnHand).some((v) => v == 2)
+    return Object.values(numOnHand).some((v) => v === 3) &&
+      Object.values(numOnHand).some((v) => v === 2)
       ? true
       : false;
   };
 
   isFlash = async (hand: string[]) => {
-    const suitList = hand.map((card) => {
-      return card.charAt(0);
-    });
-    const suitUniqList = [...new Set(suitList)];
-    return suitUniqList.length === 1;
+    const suitOnHand = suitCount(hand);
+    return suitList.some((s) => suitOnHand[s] === 5);
   };
 
   isStraight = async (hand: string[]) => {
-    // 条件1と2を満たす場合true
-    // 1. 数値の最大と最小の差分が4、または10からAceの配列
-    // 2. ユニークな5枚のカード
-    const numOnHand: number[] = hand.map((card) => Number(card.slice(1)));
-    const uniqList = [...new Set(numOnHand)];
-    numOnHand.sort((n, m) => n - m);
-
-    return uniqList.length === 5 &&
-      (numOnHand[4] - numOnHand[0] === 4 ||
-        JSON.stringify(numOnHand) === JSON.stringify([1, 10, 11, 12, 13]))
-      ? true
-      : false;
+    const numOnHand = numCount(hand);
+    let numArray = [];
+    for (const [key, value] of Object.entries(numOnHand)) {
+      if (value == 1) {
+        numArray.push(key);
+      }
+    }
+    // すべてのカードが1枚でなければならない
+    if (numArray.length !== 5) {
+      return false;
+    }
+    // 変換と並び替え
+    numArray = numArray.map(Number).sort((a, b) => {
+      return a - b;
+    });
+    // 最大値と最小値の差分が4ならストレート
+    return numArray[4] - numArray[0] == 4;
   };
 
   isStraightFlash = async (hand: string[]) => {
-    return this.isFlash(hand) && this.isStraight(hand);
+    return (await this.isFlash(hand)) && (await this.isStraight(hand));
   };
 }
