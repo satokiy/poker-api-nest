@@ -11,20 +11,20 @@ export class JudgePokerRoleService {
       hand.role = PokerRole.STRAIGHT_FLASH;
       return hand;
     }
-    if (await this.isFlash(hand.hand)) {
-      hand.role = PokerRole.FLASH;
-      return hand;
-    }
-    if (await this.isStraight(hand.hand)) {
-      hand.role = PokerRole.STRAIGHT;
-      return hand;
-    }
     if (await this.isFourCard(hand.hand)) {
       hand.role = PokerRole.FOUR_CARD;
       return hand;
     }
     if (await this.isFullHouse(hand.hand)) {
       hand.role = PokerRole.FULL_HOUSE;
+      return hand;
+    }
+    if (await this.isFlash(hand.hand)) {
+      hand.role = PokerRole.FLASH;
+      return hand;
+    }
+    if (await this.isStraight(hand.hand)) {
+      hand.role = PokerRole.STRAIGHT;
       return hand;
     }
     if (await this.isThreeCard(hand.hand)) {
