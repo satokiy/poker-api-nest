@@ -6,7 +6,7 @@ import { Hand } from 'src/poker/poker.model';
 export class HandCheckService {
   isInvalidMessage(handInfo: Hand): string[] {
     const message = [];
-    const cardList: string[] = handInfo.hand.split(' ');
+    const cardList: string[] = handInfo.hand;
 
     if (this.invalidLength(cardList)) {
       message.push(ErrorMessage.DEFAULT_ERROR);
@@ -36,8 +36,8 @@ export class HandCheckService {
     }
   }
 
-  invalidCard(cardList: string[] ) {
-    const regex = new RegExp(/^([SHDC])([1-9]|1[0-3])$/);
+  invalidCard(cardList: string[]) {
+    const regex = new RegExp(/^([♦♣♥♠])([1-9]|1[0-3])$/);
     return cardList.some((card) => !regex.test(card));
   }
 }

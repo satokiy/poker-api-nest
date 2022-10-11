@@ -35,7 +35,6 @@ export class PokerService {
       throw new BadRequestException(errorMessage);
     }
 
-    handInfo.cardList = handInfo.hand.split(' ');
     return await this.judgeRoleService.judgeRole(handInfo);
   }
 

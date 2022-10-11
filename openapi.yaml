@@ -118,20 +118,23 @@ components:
       type: object
       properties:
         hand:
-          type: string
           description: 手札
-          example: ♠1 ♠2 ♠3 ♠4 ♠5
+          example:
+            - ♠1
+            - ♠2
+            - ♠3
+            - ♠4
+            - ♠5
+          type: array
+          items:
+            type: string
       required:
         - hand
     PokerJudgeResponse:
       type: object
       properties:
         hand:
-          type: string
           description: 手札
-          example: ♠1 ♠2 ♠3 ♠4 ♠5
-        cardList:
-          description: カードリスト
           example:
             - ♠1
             - ♠2
@@ -157,7 +160,6 @@ components:
           example: STRAIGHT_FLASH
       required:
         - hand
-        - cardList
         - role
     PlayPokerRequestDto:
       type: object
