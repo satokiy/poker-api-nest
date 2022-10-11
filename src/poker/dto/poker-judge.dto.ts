@@ -1,32 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class PokerJudgeRequestDto {
   @ApiProperty({
-    type: String,
+    type: [String],
     description: '手札',
-    example: '♠1 ♠2 ♠3 ♠4 ♠5',
+    example: ['♠1', '♠2', '♠3', '♠4', '♠5'],
     required: true,
   })
-  @IsString()
-  @IsNotEmpty()
-  hand: string;
+  @IsString({ each: true })
+  hand: string[];
 }
 
 export class PokerJudgeResponse {
   @ApiProperty({
-    type: String,
-    description: '手札',
-    example: '♠1 ♠2 ♠3 ♠4 ♠5',
-  })
-  hand: string;
-
-  @ApiProperty({
     type: [String],
-    description: 'カードリスト',
+    description: '手札',
     example: ['♠1', '♠2', '♠3', '♠4', '♠5'],
   })
-  cardList: string[];
+  hand: string[];
 
   @ApiProperty({
     enum: [
