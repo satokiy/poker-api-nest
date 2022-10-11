@@ -37,7 +37,8 @@ export class HandCheckService {
   }
 
   invalidCard(cardList: string[]) {
-    const regex = new RegExp(/^([♦♣♥♠])([1-9]|1[0-3])$/);
+    // 1:A, 11:J, 12:Q, 13:K
+    const regex = new RegExp(/^([♦♣♥♠])([1-9]|1[0-3]|[AJQK])$/);
     return cardList.some((card) => !regex.test(card));
   }
 }
