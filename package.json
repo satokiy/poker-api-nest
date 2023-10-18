@@ -24,7 +24,7 @@
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
-    "@nestjs/swagger": "^6.1.2",
+    "@nestjs/swagger": "^7.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@types/aws-lambda": "^8.10.104",
     "aws-serverless-express": "^3.4.0",
