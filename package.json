@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "redoc-cli": "^0.13.20",
-    "@nestjs/cli": "^9.0.0",
+    "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
     "@types/express": "^4.17.13",
