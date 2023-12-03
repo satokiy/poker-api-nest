@@ -29,7 +29,7 @@
     "@types/aws-lambda": "^8.10.104",
     "aws-serverless-express": "^3.4.0",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
+    "rimraf": "^5.0.0",
     "rxjs": "^7.2.0",
     "serverless": "^3.22.0"
   },
