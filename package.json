@@ -22,7 +22,7 @@
     "redoc-build": "redoc-cli build openapi.yaml -o ./docs/index.html"
   },
   "dependencies": {
-    "@nestjs/common": "^9.0.0",
+    "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/swagger": "^6.1.2",
     "@nestjs/platform-express": "^9.0.0",
